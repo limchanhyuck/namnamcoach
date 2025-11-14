@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>남남코치 | 예산·TDEE 기반 식단 코치</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f4fbff;
+      color: #222;
+      line-height: 1.6;
+    }
+    header {
+      background: #ffffffcc;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e4f0f8;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 20px;
+      color: #168f6b;
+    }
+    .logo-badge {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg,#4cd4a2,#29b28a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 16px;
+    }
+    main { padding: 32px 0 64px; }
+    section { margin-bottom: 64px; }
+
+    /* hero */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+    }
+    .hero-text {
+      flex: 1 1 280px;
+    }
+    .hero-text h1 {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+    .hero-text p {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: #e4f7ef;
+      color: #168f6b;
+    }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .btn-primary {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      background: #20b07e;
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: default;
+    }
+    .btn-outline {
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid #b2d9c8;
+      background: #ffffffaa;
+      font-size: 13px;
+      color: #25644c;
+      cursor: default;
+    }
+    .hero-mock {
+      flex: 1 1 260px;
+      background: #ffffffcc;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      text-align: center;
+    }
+    .mock-avatar {
+      width: 120px; height: 120px;
+      margin: 0 auto 12px;
+      border-radius: 40px;
+      background: radial-gradient(circle at 30% 20%, #ffeec8, #f8c36a);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 52px;
+    }
+    .mock-caption { font-size: 13px; color: #555; }
+
+    /* sections */
+    h2 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    .sub {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 16px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 16px 18px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.03);
+      font-size: 13px;
+    }
+    .card h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+    ul { padding-left: 18px; font-size: 13px; }
+    li { margin-bottom: 4px; }
+
+    .note {
+      font-size: 12px;
+      color: #666;
+      background: #f1f7fb;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-top: 12px;
+    }
+
+    footer {
+      font-size: 11px;
+      color: #888;
+      border-top: 1px solid #e4f0f8;
+      padding: 16px 0 32px;
+      background: #f9fdff;
+    }
+
+    @media (max-width: 640px) {
+      .header-inner { height: 56px; }
+      .hero-text h1 { font-size: 24px; }
+      main { padding-top: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap header-inner">
+      <div class="logo">
+        <div class="logo-badge">N</div>
+        <span>남남코치</span>
+      </div>
+      <div style="font-size:12px;color:#666;">
+        개인 개발 프로젝트 · TDEE 기반 식단 코치
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-text">
+          <div class="hero-badges">
+            <span class="badge">개인 프로젝트</span>
+            <span class="badge">TDEE 기반 맞춤 식단</span>
+            <span class="badge">쿠팡 파트너스 연동 예정</span>
+          </div>
+          <h1>예산과 TDEE로 한 달 식단을 설계하는<br/>웹 기반 식단 코치 서비스</h1>
+          <p>
+            <strong>남남코치</strong>는 사용자의 성별·나이·키·체중·활동량으로
+            TDEE를 계산하고, 설정한 한 달 예산 안에서 맞춤 식단을 추천하는
+            개인 개발 프로젝트입니다.<br/>
+            키와 몸무게에 맞춰 캐릭터가 함께 변하면서 다이어트 동기부여를 제공합니다.
+          </p>
+          <div class="hero-cta">
+            <button class="btn-primary">현재: 웹 프로토타입 개발 중</button>
+            <button class="btn-outline">향후 쿠팡 상품 연동 및 앱 버전 계획</button>
+          </div>
+        </div>
+
+        <div class="hero-mock">
+          <div class="mock-avatar">🥑</div>
+          <div class="mock-caption">
+            예시 화면 컨셉 – 사용자가 선택한 캐릭터가<br/>
+            BMI·체중 변화에 따라 단계적으로 변하는 형태로 구현 예정입니다.
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES -->
+      <section>
+        <h2>서비스 주요 기능(기획)</h2>
+        <p class="sub">
+          남남코치는 상업 서비스 이전 단계의 개인 개발 프로젝트로,
+          실제 구현은 Spring + MyBatis + Vue 기반의 웹 애플리케이션으로 진행 중입니다.
+        </p>
+        <div class="features">
+          <div class="card">
+            <h3>1. TDEE 기반 칼로리 계산</h3>
+            <ul>
+              <li>성별, 나이, 키, 체중, 활동량을 입력받아 BMR/TDEE 계산</li>
+              <li>감량·유지·증량 목표에 따른 하루 목표 섭취 칼로리 산출</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>2. 예산 기반 한 달 식단</h3>
+            <ul>
+              <li>사용자가 한 달 식비 예산과 하루 식사 횟수를 설정</li>
+              <li>내부 식재료 DB를 활용해 예산과 칼로리를 동시에 만족하는 식단 추천</li>
+              <li>향후 쿠팡 파트너스 API를 활용해 실제 상품 가격과 연동할 계획</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>3. 캐릭터를 통한 시각화</h3>
+            <ul>
+              <li>사용자가 프로필 생성 시 여러 캐릭터(아보카도, 곰 등) 중 선택</li>
+              <li>BMI 구간에 따라 캐릭터 체형/이미지가 단계적으로 변화</li>
+              <li>체중 감소 시 캐릭터가 슬림해지며 동기부여 제공</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>4. 웹 → 앱 확장 전제</h3>
+            <ul>
+              <li>백엔드는 REST API(Sprint Boot), 프론트는 Vue SPA로 분리</li>
+              <li>추후 PWA 또는 하이브리드 앱(WebView)으로 확장 가능하도록 설계</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- COUPANG PARTNERS NOTE -->
+      <section>
+        <h2>쿠팡 파트너스 활용 계획</h2>
+        <p class="sub">
+          본 페이지는 쿠팡 파트너스 가입 및 API 연동을 위한
+          <strong>프로젝트 소개 및 서비스 운영 채널</strong>로 활용될 예정입니다.
+        </p>
+        <div class="card">
+          <h3>운영/연동 방식</h3>
+          <ul>
+            <li>식단에 사용되는 주요 식재료(닭가슴살, 견과류, 샐러드 키트 등)에 대해 쿠팡 파트너스 상품을 검색</li>
+            <li>사용자에게 제안되는 식단 옆에 관련 상품 링크를 함께 노출</li>
+            <li>사용자가 원할 경우 쿠팡 파트너스 링크를 통해 상품 상세 페이지로 이동</li>
+            <li>서비스 내에서는 영양 정보/식단 추천에 집중하며, 구매 여부는 전적으로 사용자 선택</li>
+          </ul>
+          <div class="note">
+            ※ 현재는 개발 및 설계 단계이며, 쿠팡 파트너스 정책을 준수하는 선에서
+            링크 노출 및 가격 정보를 연동할 예정입니다.
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section>
+        <h2>개발자 및 연락처</h2>
+        <p class="sub">
+          이 서비스는 개인 학습 및 포트폴리오 목적의 프로젝트로,
+          비정상적인 트래픽 유도나 정책 위반 행위를 지양합니다.
+        </p>
+        <ul>
+          <li>개발자: (임찬혁)</li>
+          <li>이메일: (dlacksgur311@gmail.com)</li>
+          <li>기술 스택: Spring Boot, MyBatis, Vue.js, MySQL</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      남남코치 · 개인 개발용 식단 코치 프로젝트 ·
+      쿠팡 파트너스 정책을 준수하는 범위 내에서만 상품 링크를 활용할 예정입니다.
+    </div>
+  </footer>
+</body>
+</html>
